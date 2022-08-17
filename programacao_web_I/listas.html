@@ -14,20 +14,20 @@
 
     <div class="container">
         <form onsubmit="adicionar(event)">
-            <h3>Nota Aluno</h3>
+            <h3>Mensal</h3>
             <div class="mb-3">
-                <label class="form-label">Nome do aluno</label>
-                <input type="text" class="form-control" id="nomeAluno">
+                <label class="form-label">Nome do Dependente</label>
+                <input type="text" class="form-control" id="nomeDependente">
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Nota 1</label>
-                <input type="text" class="form-control" id="nota1" >
+                <label class="form-label">Ganhos</label>
+                <input type="text" class="form-control" id="ganhos" >
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Nota 2</label>
-                <input type="text" class="form-control" id="nota2" >
+                <label class="form-label">Perdas</label>
+                <input type="text" class="form-control" id="perdas" >
             </div>
 
             <button type="submit" class="btn btn-primary">Adicionar</button>
@@ -36,10 +36,10 @@
         <table class="table mt-3">
             <thead>
               <tr>
-                <th >Nome</th>
-                <th >Nota 1</th>
-                <th >Nota 2</th>
-                <th >Média</th>
+                <th >Nome do Dependente</th>
+                <th >Ganhos</th>
+                <th >Perdas</th>
+                <th >Positivo / Negativo</th>
               </tr>
             </thead>
             <tbody id="resultado">
@@ -51,29 +51,23 @@
 
         function adicionar(event) {
             event.preventDefault();
-            const aluno = document.querySelector('#nomeAluno').value;
-            const n1 = parseInt(document.querySelector('#nota1').value);
-            const n2 = parseInt(document.querySelector('#nota2').value);
-            const media = (n1 + n2) / 2;
+            const dependente = document.querySelector('#nomeDependente').value;
+            const ganhos = parseInt(document.querySelector('#ganhos').value);
+            const perdas = parseInt(document.querySelector('#perdas').value);
+            const p_ou_n = (ganhos - perdas)
 
-            if (!aluno) {
+            if (!dependente) {
                 alert('informe o nome');
                 return;
             }
 
-            if (n1 < 0 || n1 > 10) {
-                alert('nota deve ser de 1 até 10');
-                return;
-            }
-
-
             document.querySelector('#resultado').innerHTML = 
                 document.querySelector('#resultado').innerHTML + `
                 <tr>
-                    <td>${aluno}</td>
-                    <td>${n1}</td>
-                    <td>${n2}</td>
-                    <td class="${media < 7 ? 'text-danger' : ''}">${media}</td>
+                    <td>${dependente}</td>
+                    <td>${ganhos}</td>
+                    <td>${perdas}</td>
+                    <td class="${p_ou_n < 7 ? 'text-danger' : ''}">${p_ou_n}</td>
                 </tr>                           
             `;
         }
