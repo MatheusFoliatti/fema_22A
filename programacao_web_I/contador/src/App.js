@@ -1,21 +1,20 @@
-/* eslint-disable no-undef */
-import { logDOM } from '@testing-library/react';
+import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
 
- 
   const [contador, setContador] = useState(0)
 
   function aumentar() {
     console.log('aumentar');
     setContador(contador + 1);
   }
-
   function diminuir() {
     console.log('diminuir');
     setContador(contador - 1);
   }
+
 
   return (
     <div className="App">
