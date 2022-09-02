@@ -1,26 +1,47 @@
-footer {
-  background-color: purple;
-  position: fixed;
-  bottom:0;
-  width: 100%;
-}
-
-img{
-  position: absolute;
-  max-width: 100%;
-  height: 80px;
-  bottom: 0;
-}
-
-h1{
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
-#todo-list{
-  display: flex;
-  justify-content: center;
-  flex-direction: column  ;
-  align-items: center;
-}
+.pVermelho {
+    color:red;
+    font-style: bold;
+  }
+  /* .invisivel {
+    display: none;
+  } */
+  
+  .botao{
+    background-color: #24386e;
+    color: #fff;
+  }
+  
+  #editarTarefa{
+    background-color: #24386e;
+    border-color: #24386e;
+    color: #fff;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  
+  #excluirTarefa{
+    background-color: #B02836;
+    border-color: #B02836;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  footer{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    background-color: #24386e;
+    bottom: 0;
+    position: fixed;
+    color: #fff;
+  }
+  
+  img{
+    width: 250px;
+    margin-left: 10px;
+    padding: 5px;
+  }
+  
+  h5{
+    margin: auto 10%;
+  }

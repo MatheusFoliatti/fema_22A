@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/alt-text */
-import React from "react";
-import "./App.css";
+import React from 'react'
 
 const App = () => {
   const [todos, setTodos] = React.useState([]);
@@ -47,8 +45,7 @@ const App = () => {
   }
 
   return (
-    <div id="todo-list">
-      <h1>Lista de Tarefas</h1>
+    <div id="container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -86,10 +83,6 @@ const App = () => {
           </div>
         </div>
       ))}
-      <footer>
-        <h1>Matheus Foliatti</h1>
-        <img src={require('./femalogo.jpg')} />
-      </footer>
     </div>
 
   );
