@@ -52,12 +52,12 @@ const App = () => {
           onChange={(e) => setTodo(e.target.value)}
           value={todo}
         />
-        <button type="submit">Adicionar Tarefa</button>
+        <button className='submit' type="submit">Adicionar Tarefa</button>
       </form>
       {todos.map((todo) => (
         <div key={todo.id} className="todo">
           <div className="todo-text">
-            <input
+            <input className='checkbox'
               type="checkbox"
               id="completed"
               checked={todo.completed}
@@ -74,12 +74,12 @@ const App = () => {
           </div>
           <div className="todo-actions">
             {todo.id === todoEditing ? (
-              <button onClick={() => submitEdits(todo.id)}>Enviar edição</button>
+              <button className='edit' onClick={() => submitEdits(todo.id)}>Enviar edição</button>
             ) : (
-              <button onClick={() => setTodoEditing(todo.id)}>Editar</button>
+              <button className='edit' onClick={() => setTodoEditing(todo.id)}>Editar</button>
             )}
 
-            <button onClick={() => deleteTodo(todo.id)}>Excluir</button>
+            <button className='delete' onClick={() => deleteTodo(todo.id)}>Excluir</button>
           </div>
         </div>
       ))}

@@ -7,7 +7,7 @@ function Rodape() {
         <>
             <footer>
                 <img src={logo} alt="Fema Logo"/>
-                <h5>Integrantes: Carlos Zomer, Luana Beck, Luiz Gabriel, Matheus Foliatti.</h5>
+                <h5>Integrantes: Carlos Zomer, Gabi Turra, Luana Beck, Luiz Gabriel, Matheus Foliatti.</h5>
             </footer>
         
         </>
