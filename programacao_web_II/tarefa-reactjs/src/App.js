@@ -32,16 +32,44 @@ function App() {
     })
   }
 
+  function editar(event){
+    event.preventDefault();
+    let tarefa = {
+      id: id,
+      descricao: descricao
+    };
+    console.log('tarefa', tarefa);
+
+    axios.put('http://localhost:3100/tarefa', tarefa).then(() => {
+      buscar();
+    })
+  }
+
+  function excluir(event){
+    event.preventDefault();
+    let tarefa = {
+      id: id,
+      descricao: descricao
+    };
+    console.log('tarefa', tarefa);
+
+    axios.delete('http://localhost:3100/tarefa', tarefa).then(() => {
+      buscar();
+    })
+  }
+
   return (
     <div className="container">
       
-    <form onSubmit={(event) => salvar (event)}>
+    <form onSubmit={(event) => salvar (event)} >
       <div className="mb-3">
         <label className="form-label">Descrição</label>
         <input type="text" className="form-control" value={descricao} onChange={(event) => setdescricao(event.target.value)}/>
       </div>
     
       <button type="submit" className='btn btn-primary'>Salvar</button>
+      <button type="submit" className='btn btn-primary'>Editar</button>
+      <button type="submit" className='btn btn-primary'>Excluir</button>
 
     </form>
 
