@@ -4,8 +4,8 @@ import './App.css';
 
 function App() {
 
-  const [id, setid] = useState();
-  const [descricao, setdescricao] = useState();
+  const [codigo, setCodigo] = useState();
+  const [descricao, setDescricao] = useState('');
   const [listaTarefa, setListaTarefa] = useState([]);
 
   useEffect(() => {
@@ -21,42 +21,32 @@ function App() {
 
   function salvar(event){
     event.preventDefault();
+
     let tarefa = {
-      id: id,
+      codigo: codigo,
       descricao: descricao
     };
-    console.log('tarefa', tarefa);
-
     axios.put('http://localhost:3100/tarefa', tarefa).then(() => {
       buscar();
+
+      setCodigo();
+      setDescricao('');
     })
   }
 
-  function editar(event){
-    event.preventDefault();
-    let tarefa = {
-      id: id,
-      descricao: descricao
-    };
-    console.log('tarefa', tarefa);
-
-    axios.put('http://localhost:3100/tarefa', tarefa).then(() => {
-      buscar();
-    })
+  function editar (tarefa){
+axios.get(`http://localhost:3100/tarefa/${tarefa.codigo}`).then((result) => {
+  setCodigo(result.data.codigo)
+  setDescricao(result.data.descricao)
+});
   }
 
-  function excluir(event){
-    event.preventDefault();
-    let tarefa = {
-      id: id,
-      descricao: descricao
-    };
-    console.log('tarefa', tarefa);
-
-    axios.delete('http://localhost:3100/tarefa', tarefa).then(() => {
-      buscar();
-    })
+  function excluir(tarefa){
+    axios.delete(`http://localhost:3100/tarefa/${tarefa.codigo}`).then((result) => {
+    buscar();
+    });
   }
+
 
   return (
     <div className="container">
@@ -64,22 +54,20 @@ function App() {
     <form onSubmit={(event) => salvar (event)} >
       <div className="mb-3">
         <label className="form-label">Descrição</label>
-        <input type="text" className="form-control" value={descricao} onChange={(event) => setdescricao(event.target.value)}/>
+        <input type="text" className="form-control" value={descricao} onChange={(event) => setDescricao(event.target.value)}/>
       </div>
     
       <button type="submit" className='btn btn-primary'>Salvar</button>
-      <button type="submit" className='btn btn-primary'>Editar</button>
-      <button type="submit" className='btn btn-primary'>Excluir</button>
 
     </form>
 
       <h3>Lista de tarefa</h3>
 
       <table className='table'>
-        <thead>
+        <thead> 
           <tr>
-            <td>Tarefa</td>
-            <td> </td>
+            <td> Tarefa </td>
+            <td> Ações </td>
           </tr>
         </thead>
         <tbody>
@@ -87,11 +75,12 @@ function App() {
             listaTarefa.map((tarefa, index) => (
               <tr key={index}>
                 <td>{tarefa.descricao}</td>
-                <td></td>
+                <td><button type="button" className='edit' onClick={(event) => editar(tarefa)}> Editar </button> 
+                    <button type="button" className='del' onClick={(event) => excluir(tarefa)}> Excluir </button>                  
+                </td>
               </tr>
             ))
           }
- 
         </tbody>
       </table>
 
